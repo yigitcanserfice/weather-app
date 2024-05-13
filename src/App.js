@@ -1,32 +1,32 @@
-import React, { useState, useEffect } from 'react'
-import axios from 'axios'
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-const API_KEY = '63ef74ef53a475c2969175692362e964'
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 function App() {
-  const [sehir, setSehir] = useState('')
-  const [havaDurumu, setHavaDurumu] = useState(null)
+  const [sehir, setSehir] = useState("");
+  const [havaDurumu, setHavaDurumu] = useState(null);
 
   useEffect(() => {
     const havaDurumuAl = async () => {
       try {
         const response = await axios.get(
           `https://api.openweathermap.org/data/2.5/weather?q=${sehir}&lang=tr&units=metric&appid=${API_KEY}`
-        )
-        setHavaDurumu(response.data)
+        );
+        setHavaDurumu(response.data);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
+    };
 
-    if (sehir !== '') {
-      havaDurumuAl()
+    if (sehir !== "") {
+      havaDurumuAl();
     }
-  }, [sehir])
+  }, [sehir]);
 
   const sehirDegistir = (event) => {
-    setSehir(event.target.value)
-  }
+    setSehir(event.target.value);
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-500">
@@ -80,7 +80,7 @@ function App() {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
